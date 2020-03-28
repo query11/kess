@@ -198,20 +198,3 @@ client.on("message", async function(msg) {
 });
 
 // CAPSLOCK \\
-
-
-client.on("channelDelete", async function(channel) {
-if(channel.guild.id !== "693364248734203964") return;  // Log kanalının ID'sini yazınız.
-    let logs = await channel.guild.fetchAuditLogs({type: 'CHANNEL_DELETE'});
-    if(logs.entries.first().executor.bot) return;
-    channel.guild.member(logs.entries.first().executor).roles.filter(role => role.name !== "@everyone").array().forEach(role => {
-              channel.guild.member(logs.entries.first().executor).removeRole(channel.guild.roles.get("670286773716254740"))
-              channel.guild.member(logs.entries.first().executor).removeRole(channel.guild.roles.get("670703109269487657"))
-    })
-const logkanali = channel.guild.channels.find(c=> c.id ==="693364248734203964") // Log kanalının ID'sini yazınız.
-const silme = new Discord.RichEmbed()
-.setColor('RANDOM')
-.setDescription(`${channel.name} adlı kanal silindi. Silen kişinin yetkileri başarıyla alındı.`)
-.setFooter('Botadı  | Kanal Koruma Sistemi')
-logkanali.send(silme)
-})  
