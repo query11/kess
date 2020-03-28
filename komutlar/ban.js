@@ -2,8 +2,10 @@ const Discord = require('discord.js');
 
 exports.run = async (bot, message, args) => {
       
-  if (!message.member.roles.has("693294003327729735")) return message.channel.send(`Bu komutu kullanabilmek için \`Ban Hammer\` yetkisine sahip olmasınız.`).then(m => m.delete(10000));
-
+    if (!message.member.roles.find("name", "ᕒ ʙᴀɴ ᓬ")) {
+        return message.channel.send(' **Bu Komutu Kullanmak için** \*`ᕒ ʙᴀɴ ᓬ*\` **Rolüne Sahip Olman Lazım** ')
+            .then(m => m.delete(5000));
+    } 
 const kisi = message.mentions.users.first()
 
 let reason = args.slice(1).join(' ')

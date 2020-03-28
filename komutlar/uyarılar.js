@@ -7,8 +7,10 @@ exports.run = async(client, message, args) => {
   .setColor("RANDOM")
   .setAuthor(`Bu Komutu Kullanmak İçin Yeterli İzine Sahip Değilsin`, message.author.avatarURL)
   
-  if (!message.member.hasPermission ("MANAGE_MESSAGES"))
-    return message.channel.send(yetkiyok)
+    if (!message.member.roles.find("name", "ᕒ ʏᴇᴛᴋɪʟɪ ᓬ")) {
+        return message.channel.send(' **Bu Komutu Kullanmak için** \*`ᕒ ʏᴇᴛᴋɪʟɪ ᓬ*\` **Rolüne Sahip Olman Lazım** ')
+            .then(m => m.delete(5000));
+    } 
   
   const kisiyok = new Discord.RichEmbed()
   .setColor("RANDOM")

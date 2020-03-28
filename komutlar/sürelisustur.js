@@ -3,8 +3,10 @@ const ms = require("ms");
 
 module.exports.run = async (client, message, args) => {
 
-if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Bu komutu kullanabilmek için `Administrator` yetkisine sahip olmanız gerekmektedir.")
- 
+    if (!message.member.roles.find("name", "ᕒ sᴜsᴛᴜʀᴍᴀ ᓬ")) {
+        return message.channel.send(' **Bu Komutu Kullanmak için** \*`ᕒ sᴜsᴛᴜʀᴍᴀ ᓬ*\` **Rolüne Sahip Olman Lazım** ')
+            .then(m => m.delete(5000));
+    } 
  let efeÜye = message.mentions.members.first() || message.guild.members.get(args[0])
   if(!efeÜye) return message.channel.send("Lütfen susturulacak kişiyi etiketleyiniz.");
   if(efeÜye.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Benden yetkili birini susturamam.");
