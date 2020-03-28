@@ -4,6 +4,7 @@ const ayarlar = require('./ayarlar.json');
 const chalk = require('chalk');
 const fs = require('fs');
 const moment = require('moment');
+const db = require('quick.db');
 require('./util/eventLoader')(client);
 
 var prefix = ayarlar.prefix;
@@ -109,3 +110,64 @@ client.on('error', e => {
 });
 
 client.login(ayarlar.token);
+
+// KÜFÜR \\
+client.on("message", async msg => {
+  let anto = await db.fetch(`anto${msg.guild.id}`)
+ if (anto === "acik") {
+        const kufur = ["oç", "amk", "ananı sikiyim", "ananıskm", "piç", "amk", "amsk", "sikim", "sikiyim", "orospu çocuğu", "piç kurusu", "kahpe", "orospu", "mal", "sik", "yarrak", "am", "amcık", "amık", "yarram", "sikimi ye", "mk", "mq", "aq", "ak", "amq",];
+        if (kufur.some(word => msg.content.includes(word))) {
+        msg.delete();
+
+      }
+    }
+})
+// KÜFÜR \\
+
+// REKLAM \\
+client.on("message", async msg => {
+  let antoxd = await db.fetch(`antoxd${msg.guild.id}`)
+ if (antoxd === "acik") {
+        const reklam = ["discord.gg", "https://discordapp.com/invite/",];
+        if (reklam.some(word => msg.content.includes(word))) {
+        msg.delete();
+
+      }
+    }
+})
+// REKLAM \\
+
+// EVERYONE VE HERE \\
+
+let ehengel = JSON.parse(
+  fs.readFileSync("./ayarlar/everhereengel.json", "utf8")
+);
+client.on("message", async function(msg) {
+  if (!msg.guild) {
+  } else {
+    if (!ehengel[msg.guild.id]) {
+    } else {
+      if (ehengel[msg.guild.id].sistem == false) {
+      } else if (ehengel[msg.guild.id].sistem == true) {
+        if (msg.author.id == msg.guild.ownerID) {
+        } else {
+          if (msg.content.includes("@everyone")) {
+            msg.delete();
+            msg
+              .reply("Maalesef `everyone` atmana izin veremem!")
+              .then(msj => msj.delete(3200));
+          } else {
+          }
+          if (msg.content.includes("@here")) {
+            msg.delete();
+            msg
+              .reply("Maalesef `here` atmana izin veremem!")
+              .then(msj => msj.delete(3200));
+          } else {
+          }
+        }
+      }
+    }
+  }
+});
+// EVERYONE VE HERE \\
