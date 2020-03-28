@@ -112,6 +112,7 @@ client.on('error', e => {
 client.login(ayarlar.token);
 
 // KÜFÜR \\
+
 client.on("message", async msg => {
   let anto = await db.fetch(`anto${msg.guild.id}`)
  if (anto === "acik") {
@@ -122,9 +123,11 @@ client.on("message", async msg => {
       }
     }
 })
+
 // KÜFÜR \\
 
 // REKLAM \\
+
 client.on("message", async msg => {
   let antoxd = await db.fetch(`antoxd${msg.guild.id}`)
  if (antoxd === "acik") {
@@ -135,6 +138,7 @@ client.on("message", async msg => {
       }
     }
 })
+
 // REKLAM \\
 
 // EVERYONE VE HERE \\
@@ -170,4 +174,44 @@ client.on("message", async function(msg) {
     }
   }
 });
+
 // EVERYONE VE HERE \\
+
+// CAPSLOCK \\
+
+    client.on("message", async msg => {
+    if (msg.channel.type === "dm") return;
+      if(msg.author.bot) return;  
+        if (msg.content.length > 4) {
+         if (db.fetch(`capslock_${msg.guild.id}`)) {
+           let caps = msg.content.toUpperCase()
+           if (msg.content == caps) {
+             if (!msg.member.hasPermission("ADMINISTRATOR")) {
+               if (!msg.mentions.users.first()) {
+                 msg.delete()
+                 return msg.channel.send(`✋ ${msg.author}, Bu sunucuda, büyük harf kullanımı engellenmekte!`).then(m => m.delete(5000))
+     }
+       }
+     }
+   }
+  }
+});
+
+// CAPSLOCK \\
+
+
+client.on("channelDelete", async function(channel) {
+if(channel.guild.id !== "693364248734203964") return;  // Log kanalının ID'sini yazınız.
+    let logs = await channel.guild.fetchAuditLogs({type: 'CHANNEL_DELETE'});
+    if(logs.entries.first().executor.bot) return;
+    channel.guild.member(logs.entries.first().executor).roles.filter(role => role.name !== "@everyone").array().forEach(role => {
+              channel.guild.member(logs.entries.first().executor).removeRole(channel.guild.roles.get("670286773716254740"))
+              channel.guild.member(logs.entries.first().executor).removeRole(channel.guild.roles.get("670703109269487657"))
+    })
+const logkanali = channel.guild.channels.find(c=> c.id ==="693364248734203964") // Log kanalının ID'sini yazınız.
+const silme = new Discord.RichEmbed()
+.setColor('RANDOM')
+.setDescription(`${channel.name} adlı kanal silindi. Silen kişinin yetkileri başarıyla alındı.`)
+.setFooter('Botadı  | Kanal Koruma Sistemi')
+logkanali.send(silme)
+})  
