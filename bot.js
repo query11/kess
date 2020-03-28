@@ -116,7 +116,7 @@ client.on('guildMemberAdd',async member => {
   
     const ktarih = new Date().getTime() - gkisi.createdAt.getTime();   
     if (ktarih < 259200) 
-  member.addRole("ROL ID")
-  member.removeRole("ROL ID")
+  member.addRole("693337505294188554")
+  member.removeRole("693293177838501969")
 });
 // ŞÜPHELİ HESAP \\
