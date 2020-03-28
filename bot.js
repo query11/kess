@@ -110,12 +110,14 @@ client.on('error', e => {
 
 client.login(ayarlar.token);
 
+
 // ŞÜPHELİ HESAP \\
 client.on('guildMemberAdd',async member => {
   let gkisi = client.users.get(member.id);
+  
     const ktarih = new Date().getTime() - gkisi.createdAt.getTime();   
-    if (ktarih < 259200000) 
-  member.addRole("693337505294188554")
-  member.removeRole("693293177838501969")
+    if (ktarih < 2592000001) 
+      member.removeRole("693293177838501969"),   
+      member.addRole("693337505294188554")
 });
 // ŞÜPHELİ HESAP \\
