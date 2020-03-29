@@ -202,3 +202,12 @@ client.on("messageUpdate", async (oldMsg, newMsg) => {
   kanalbul.send(chatembed);
 });
 // CHAT LOG \\
+
+// BOT DM LOG \\
+client.on("message", async message => {
+  if(message.author.id === client.user.id) return;
+  if(message.guild) return;
+  client.channels.get('693665292206866492').send(new Discord.RichEmbed().setAuthor("Yeni Bir DM", client.user.avatarURL).setFooter(message.author.tag, message.author.avatarURL).setDescription(`**Gönderenin ID:** ${message.author.id}`).setTimestamp().addField("Mesaj", message.content).setColor("RANDOM"))
+})
+// BOT DM LOG \\
+
