@@ -242,8 +242,12 @@ client.on('roleDelete', async function(role) {
   let teqnoembed = new Discord.RichEmbed()
     .setTitle("Uyarı")
     .setColor("RED")
-    .setFooter("")
+    .setFooter("Saudade Mudita")
     .setDescription(`\`${role.guild.name}\` adlı sunucunuzda ${isim} adına sahip rol, ${yapanad} adlı kişi tarafından silindi. Ben tekrardan onardım!`)
   role.guild.owner.send(teqnoembed)
 });
 // ROL KORUMA \\
+
+// KANAL KORUMA \\
+
+// KANAL KORUMA \\
