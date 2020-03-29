@@ -271,3 +271,27 @@ client.on("channelDelete", async channel => {
   })
 })
 // KANAL KORUMA \\
+
+// BAN LİMİT \\
+client.on("guildBanAdd", async(guild, user) => {
+   if(guild.id !== "693280770680291359") return; //ID kısmına sunucu ID'nizi giriniz.
+const banlayan = await guild.fetchAuditLogs({type: 'MEMBER_BAN_ADD'}).then(audit => audit.entries.first())
+let banlayancek = guild.members.get(banlayan.exucutor.id)
+if(banlayancek.bot) return;    
+    
+ let banlar = await db.fetch(`banlayaninbanlari_${banlayancek.id}`)    
+ if(!banlar) {
+   db.set(`banlayaninbanlari_${banlayancek.id}`, 1)
+ return;
+ }
+  
+let limit = "3" // 3 kısmına ban limitinin kaç olmasını istiyorsanız yazınız.
+  if(banlar >= limit) {
+guild.member.kick(user,{reason: "Saudade Mudita, Atıldınız. (Ban limitinizi aştınız.)"})    
+db.delete(`banlayaninbanlari_${banlayancek.id}`)
+return;      
+  } 
+
+ db.add(`banlayaninbanlari_${banlayancek.id}`, 1)
+    })
+// BAN LİMİT \\

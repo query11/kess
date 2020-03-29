@@ -30,7 +30,8 @@ let reason = args.slice(1).join(' ')
                 .setColor(0xffa300)
                 .addField(`${kisi} kişisi ${reason} sebebi ile `, "yasaklandı.")
                 .setImage("https://cdn.discordapp.com/attachments/673224895756238848/673450899531628544/adalaett.gif");
-                bot.channels.get("684141410949136523").send(embed1).then(message.channel.send(embed))
+                message.guild.channels.get("693310347838226433").send(embed1).then(message.channel.send(embed))
+
 };
 
 exports.conf = {
