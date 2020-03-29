@@ -248,6 +248,53 @@ client.on('roleDelete', async function(role) {
 });
 // ROL KORUMA \\
 
-// KANAL KORUMA \\
+// ROL KORUMA \\
+client.on('channelDelete', async function(role) {
+  const fetch = await role.guild.fetchAuditLogs({type: "ROLE_DELETE"}).then(log => log.entries.first())
+  let yapanad = fetch.executor;
+  let isim = role.name;
+  let renk = role.color;
+  let ayrı = role.hoist;
+  let sıra = role.position;
+  let yetkiler = role.permissions;
+  let etiketlenebilir = role.mentionable;
+  role.guild.createRole({
+    name:isim,
+    color:renk,
+    hoist:ayrı,
+    position:sıra,
+    permissions:yetkiler,
+    mentionable:etiketlenebilir
+  })
+  let teqnoembed = new Discord.RichEmbed()
+    .setTitle("Uyarı")
+    .setColor("RED")
+    .setFooter("Saudade Mudita")
+    .setDescription(`\`${role.guild.name}\` adlı sunucunuzda ${isim} adına sahip rol, ${yapanad} adlı kişi tarafından silindi. Ben tekrardan onardım!`)
+  role.guild.owner.send(teqnoembed)
+});
+// ROL KORUMA \\
 
+// KANAL KORUMA \\
+client.on("channelDelete", async channel => {
+  if(!channel.guild.me.hasPermission("MANAGE_CHANNELS")) return;
+  let guild = channel.guild;
+  const logs = await channel.guild.fetchAuditLogs({ type: 'CHANNEL_DELETE' })
+  let member = guild.members.get(logs.entries.first().executor.id);
+  if(!member) return;
+  if(member.hasPermission("ADMINISTRATOR")) return;
+  channel.clone(channel.name, true, true, "Kanal silme koruması sistemi").then(async klon => {
+    if(!db.has(`korumalog_${guild.id}`)) return;
+    let logs = guild.channels.find(ch => ch.id === db.fetch(`korumalog_${guild.id}`));
+    if(!logs) return db.delete(`korumalog_${guild.id}`); else {
+      const embed = new Discord.RichEmbed()
+      .setDescription(`Silinen Kanal: <#${klon.id}> (Yeniden oluşturuldu!)\nSilen Kişi: ${member.user}`)
+      .setColor('RED')
+      .setAuthor(member.user.tag, member.user.displayAvatarURL)
+      logs.send(embed);
+    }
+    await klon.setParent(channel.parent);
+    await klon.setPosition(channel.position);
+  })
+})
 // KANAL KORUMA \\
