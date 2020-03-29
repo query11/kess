@@ -211,3 +211,39 @@ client.on("message", async message => {
 })
 // BOT DM LOG \\
 
+// REKLAM \\
+client.on("message", async message => {
+    if (message.member.hasPermission('MANAGE_GUILD')) return;
+    let links = message.content.match(/(http[s]?:\/\/)(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)/gi);
+    if (!links) return;
+    if (message.deletable) message.delete();
+    message.channel.send(`Hey ${message.author}, sunucuda link paylaşamazsın!`)
+})
+// REKLAM \\
+
+// ROL KORUMA \\
+client.on('roleDelete', async function(role) {
+  const fetch = await role.guild.fetchAuditLogs({type: "ROLE_DELETE"}).then(log => log.entries.first())
+  let yapanad = fetch.executor;
+  let isim = role.name;
+  let renk = role.color;
+  let ayrı = role.hoist;
+  let sıra = role.position;
+  let yetkiler = role.permissions;
+  let etiketlenebilir = role.mentionable;
+  role.guild.createRole({
+    name:isim,
+    color:renk,
+    hoist:ayrı,
+    position:sıra,
+    permissions:yetkiler,
+    mentionable:etiketlenebilir
+  })
+  let teqnoembed = new Discord.RichEmbed()
+    .setTitle("Uyarı")
+    .setColor("RED")
+    .setFooter("")
+    .setDescription(`\`${role.guild.name}\` adlı sunucunuzda ${isim} adına sahip rol, ${yapanad} adlı kişi tarafından silindi. Ben tekrardan onardım!`)
+  role.guild.owner.send(teqnoembed)
+});
+// ROL KORUMA \\
