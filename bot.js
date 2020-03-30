@@ -306,7 +306,8 @@ let embed = new Discord.RichEmbed()
 .setDescription(`${m.author}, kanal adı kanalına resim harici bir şey göndermek yasak olduğundan dolayı mesajınız silindi.`)
 .setTimestamp()
  
- if (m.channel.id !== "654720710299615262") { // Buraya o kanalın ID'si yazılacaktır.
+  if (m.author.id === m.guild.ownerID) return;
+ if (m.channel.id !== "693286821572116510") { // Buraya o kanalın ID'si yazılacaktır.
     return;
   }
   if (m.author.id === m.guild.ownerID) return;
