@@ -295,3 +295,15 @@ return;
  db.add(`banlayaninbanlari_${banlayancek.id}`, 1)
     })
 // BAN LİMİT \\
+
+// GÖRSEL \\
+client.on("message", m => {
+  if (m.channel.id !== "693286821572116510") { //buraya o kanalın ID'si yazılacak.
+    return;
+  }
+  if (m.author.id === m.guild.ownerID) return;
+  if (m.attachments.size < 1) {
+    m.delete();
+  }
+});
+// GÖRSEL \\
