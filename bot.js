@@ -298,12 +298,20 @@ return;
 
 // GÖRSEL \\
 client.on("message", m => {
-  if (m.channel.id !== "693286821572116510") { //buraya o kanalın ID'si yazılacak.
+
+let kanal = m.guild.channels.find('name', 'görsel'); // uyari yerine kanal adınızı yazınız.
+
+let embed = new Discord.RichEmbed()
+.setColor("RANDOM")
+.setDescription(`${m.author}, kanal adı kanalına resim harici bir şey göndermek yasak olduğundan dolayı mesajınız silindi.`)
+.setTimestamp()
+ 
+ if (m.channel.id !== "654720710299615262") { // Buraya o kanalın ID'si yazılacaktır.
     return;
   }
   if (m.author.id === m.guild.ownerID) return;
   if (m.attachments.size < 1) {
-    m.delete();
+    m.delete().then(kanal.send(embed));
   }
 });
 // GÖRSEL \\
