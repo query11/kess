@@ -116,7 +116,7 @@ client.on("message", async function(msg) {
     } else {
       if (ehengel[msg.guild.id].sistem == false) {
       } else if (ehengel[msg.guild.id].sistem == true) {
-        if (msg.author.id == msg.guild.ownerID) {
+        if (msg.member.roles.find("name", "👑👑👑")) {
         } else {
           if (msg.content.includes("@everyone")) {
             msg.delete();
@@ -213,7 +213,7 @@ client.on("message", async message => {
 
 // REKLAM \\
 client.on("message", async message => {
-    if (message.member.hasPermission('MANAGE_GUILD')) return;
+    if (message.member.roles.find("name", "👑👑👑")) return;
     let links = message.content.match(/(http[s]?:\/\/)(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)/gi);
     if (!links) return;
     if (message.deletable) message.delete();
