@@ -126,3 +126,12 @@ client.on("guildMemberRemove", message => {
     .setName(`🔴 Kişi Sayısı: ${message.guild.memberCount} 📥`);
 });
 // DEGİSEN SES KANALLARI \\
+
+const dba = require('quick.db');
+client.on('message', msg => {
+  if(!msg.member.roles.find("name", "👊Aduket👊")){
+  if (dba.fetch(`seviye_${msg.author.id + msg.guild.id}`) > 1) {
+    msg.member.addRole(msg.guild.roles.find(role => role.name === "👊Aduket👊"))
+    msg.reply(':tada: Tebrikler! Gizli kodu başarıyla buldun. Rolün başarıyla verilmiştir. :tada:');
+  }}
+}); 
