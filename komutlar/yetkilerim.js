@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const { stripIndents } = require('common-tags');
 
 exports.run = (client, msg, args) => {
-
+msg.delete();
 
 let x;
     let x2;
