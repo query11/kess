@@ -135,3 +135,11 @@ client.on('message', msg => {
     msg.reply(':tada: Tebrikler! Seviyen Dolayısıyla Rolün başarıyla verilmiştir. :tada:');
   }}
 }); 
+
+// BOT OFFLINE KONTROL \\
+client.on("ready", async () => {
+  setInterval(() => {
+  client.channels.get("700351796706803762").send(`[EGLENCE] Bot Durumu: Online`)
+}, 300000)//milsaniye
+})
+// BOT OFFLINE KONTROL \\
