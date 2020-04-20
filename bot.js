@@ -105,13 +105,3 @@ client.on('error', e => {
 client.login(ayarlar.token);
 
 client.on('message', message => {
-
-  
-    if (message.content === "kdtest") {
-        message.guild.members.forEach(m => {
-          message.guild.members.get(m.id).setNickname("some nickname");
-          message.delete();
-
-     })
-  } 
-})
