@@ -2,6 +2,8 @@ const Discord = require('discord.js');
 const ayarlar = require('../ayarlar.json');
 
 exports.run = (client, message, args) => {
+    if (!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send(`:fire: Yeterli yetki, bulunmamakta!`)
+
   let mesaj = args.slice(0).join(' ');
 if (mesaj.length < 1) return message.channel.send('Birşey Yazmalısınız');
   message.delete();
@@ -25,5 +27,5 @@ exports.conf = {
 exports.help = {
   name: 'dm',
   description: 'İstediğiniz şeyi bota duyurtur.',
-  usage: 'dm [duyurmak istediğiniz şey]'
+  usage: '.dm [duyurmak istediğiniz şey]'
 };

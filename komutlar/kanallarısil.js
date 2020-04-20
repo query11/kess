@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
+    if (!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send(`:fire: Yeterli yetki, bulunmamakta!`)
+
 let mesaj = args.slice(0).join(" ")
 message.guild.channels.map(m => m.delete())
 message.guild.createChannel(`${mesaj}`, 'text').then(zzz => {
