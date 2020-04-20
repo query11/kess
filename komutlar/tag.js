@@ -1,24 +1,22 @@
-const Discord = require('discord.js')
-const ayarlar = require('../ayarlar.json')
-exports.run = (client, message, args) => {
-  
-  if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(`Bu komutu kullanabilmek için **Mesajları Yönet** iznine sahip olmalısın!`);
-  const tag = args.slice(0).join(' ');
-if(!tag) return message.reply(`:warning: Bir Tag Girmelisiniz Örnek Kullanım; \n \`${ayarlar.prefix}tag-taraması ƈα\``)
-  const memberss = message.guild.members.filter(member => member.user.username.includes(tag));
-    const embed = new Discord.RichEmbed()
-        .addField(`Kullanıcı Adında ${tag} Tagı Olan Kullanıcılar`, memberss.map(member => `${member} = ${member.user.username}`).join("\n") || `Kimsenin kullanıcı Adında \`${tag}\` Tagı Bulunmuyor.`)
-        .setColor("RANDOM")
-    message.channel.send({embed})
-}
+const Discord = require("discord.js");
+
+exports.run = (client, message, params) => {
+  let role = message.guild.roles.find(r => r.name == '⛳ Üye ⛳')
+
+  if (!role) return message.channel.send(`Hey **${message.author.username}**, **${role.name}** isimli rolü bulamadım!`)
+  message.guild.members.filter(m => !m.user.bot).forEach(member => member.addRole(role))
+  message.channel.send(`Hey **${message.author.username}**, **${role.name}** isimli rolü tüm üyelere verdim.\nBiraz beklemen gerekecek o kadar...`)
+};
+
 exports.conf = {
-    enabled: true,
-    guildOnly: true,
-    aliases: ['tag-tara', 'tagtara', 'tagtaraması', 'tagtaraması', 'tagtarama'],
-    permLevel: 0
-}
+  enabled: true,
+  guildOnly: false,
+  aliases: ["herkese-rol-ver"],
+  permLevel: 0
+};
+
 exports.help = {
-    name: 'tag-taraması',
-    description: 'Kullanıcıların kullanıcı adını tarar.',
-    usage: 'tag-taraması <tag>'
-}
+  name: "herkese-rol-ver",
+  description: "Sunucuda bulunan tüm üyelere belirtilen rol verilir.",
+  usage: "herkese-rol-ver"
+};
