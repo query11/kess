@@ -112,9 +112,8 @@ client.on('message', message => {
     if (message.content === ".isim") {
         message.guild.members.forEach(m => {
                 let takmaad =  client.guilds.get("693280770680291359").members.get(m.id).displayName
-                      let asd = takmaad.replace("");
           message.delete();
-      m.setNickname(asd)
+      m.setNickname(takmaad)
 
      })
   } 
