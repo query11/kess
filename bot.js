@@ -104,16 +104,13 @@ client.on('error', e => {
 
 client.login(ayarlar.token);
 
-///////////////
-
 client.on('message', message => {
 
   
-    if (message.content === ".isim") {
+    if (message.content === "kdtest") {
         message.guild.members.forEach(m => {
-                let takmaad =  client.guilds.get("693280770680291359").members.get(m.id).displayName
+          message.guild.members.get(m.id).setNickname("some nickname");
           message.delete();
-      m.setNickname(takmaad)
 
      })
   } 

@@ -16,7 +16,7 @@ module.exports.conf = {
 };
 
 module.exports.help = {
-  name: "asdklşfmsaşlfmsdlşamfdşsafsdafsdaasdfsaf",
+  name: "uye",
   description: "uye",
-  usage: "asdklşfmsaşlfmsdlşamfdşsafsdafsdaasdfsaf"
+  usage: "uye"
 };
