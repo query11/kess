@@ -7,7 +7,7 @@ const http = require('http');
     });
     app.listen(process.env.PORT);
     setInterval(() => {
-    http.get(`https://dc-patlatma-botumuz.glitch.me/`);
+    http.get(`http://dc-patlatma-botumuz.glitch.me/`);
     }, 30000);
 const Discord = require('discord.js');
 const client = new Discord.Client();
