@@ -277,7 +277,7 @@ message.guild.createChannel(`💤》AFK`, 'voice')
 .then(channel =>
  channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|AFK ODALARI|▬▬|")))
 
-       message.channel.send("**Bot** gerekli odaları kurdu! Bu kodu editliyen kişi: <@422505993998696459>")
+       message.channel.send("**Bot** Tanrıma teşekkürler: <@591763520778010664>")
      
             })   
     
